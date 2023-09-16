@@ -48,3 +48,8 @@
 .h-100 {
   height: unset !important;
 }
+
+.buttonTextColor {
+  color: #222;
+  font-weight: 500;
+}
