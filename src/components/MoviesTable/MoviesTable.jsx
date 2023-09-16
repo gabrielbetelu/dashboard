@@ -5,8 +5,19 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 export default function MoviesTable({data , header}) {
   console.log("******************** MoviesTable  *******************************")
-  console.log(data.next)
-  console.log(data.previous)
+  let nextExists
+  let nextPrevious
+  {if (data.next != undefined) {
+    nextExists = 1
+    console.log(data.next)
+  }}
+
+  {if (data.previous != undefined) {
+    nextPrevious = 1
+    console.log(data.previous)
+  }}
+  
+  
   return (
           <div className='containerMoviesTable'>
             <div className='moviesTableContainer'>
@@ -16,9 +27,15 @@ export default function MoviesTable({data , header}) {
     
               <MoviesTableGridHeaderFooter header = {header}/>
             </div>
-
-            
-        
+            <div>
+              {nextExists ? <Link className="nav-link collapsed" to={data.next}>
+                <i className="fas fa-fw fa-folder"></i>
+                <span>Página siguiente</span></Link> : ""}
+              {nextPrevious ? <Link className="nav-link collapsed" to={data.previous}>
+                  <i className="fas fa-fw fa-folder"></i>
+                  <span>Página anterior</span></Link> : ""}
+              </div>
+          
 
 
             

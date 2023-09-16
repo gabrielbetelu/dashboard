@@ -32,6 +32,16 @@ export default function SideBar(props) {
             countByCategory: {},
             data: []
       })
+      const [lastPageUserInfo , setLastPageUserInfo] = useState({
+            success:true,
+            endPoint: "",
+            count: 0,
+            currentPage: 0,
+            totalPages: 0,
+            next: "",
+            previous: "",            
+            data: []
+      })
       
 
       async function fetchData(endpoint , setState) {
@@ -53,8 +63,26 @@ export default function SideBar(props) {
             infoData();                  
       }, [])
 
+      let lastPageUser = userInfo.endPoint+"?page="+userInfo.totalPages
+//      console.log(lastPageUser)
+
+      useEffect (() => {
+            async function infoData() {
+                  await fetchData(lastPageUser,setLastPageUserInfo)
+            };            
+            infoData();                  
+      }, [])
+
+      console.log(lastPageUserInfo.data)
+      console.log(lastPageUserInfo.count)
+
+     let lastUser = lastPageUserInfo.data[lastPageUserInfo.count-1]
+
+
+
       console.log("*********************** SideBar ***************************************")
-      console.log(userInfo , productInfo)
+      console.log(userInfo , productInfo , lastPageUserInfo)
+      console.log(lastUser)
 
       
 
@@ -66,7 +94,7 @@ export default function SideBar(props) {
       <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
                         <Link exact className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
                               <div className="sidebar-brand-icon">
-                                    <img className="w-25" src={image} alt="Digital House" />
+                                    <img className="w-25" src={image} alt="Patagonic" />
                               </div>
                         </Link>
 
