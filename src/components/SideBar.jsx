@@ -42,6 +42,16 @@ export default function SideBar(props) {
             previous: "",            
             data: []
       });
+      const [lastPageProductInfo, setLastPageProductInfo] = useState({
+            success:true,
+            endPoint: "",
+            count: 0,
+            currentPage: 0,
+            totalPages: 0,
+            next: "",
+            previous: "",            
+            data: []
+      });
 
       const [currentUserPage, setCurrentUserPage] = useState(1);
       const handleUserNextPage = () => {
@@ -91,6 +101,14 @@ export default function SideBar(props) {
             infoData();
         }, [userInfo.endPoint , userInfo.totalPages]);
 
+        useEffect(() => {
+            async function infoData() {
+                await fetchData(productInfo.endPoint, setLastPageProductInfo , productInfo.totalPages );
+            }
+            infoData();
+        }, [productInfo.endPoint , productInfo.totalPages]);
+
+
      
    //  let lastUser = lastPageUserInfo.data[lastPageUserInfo.count-1]
 
@@ -99,6 +117,7 @@ export default function SideBar(props) {
       console.log("*********************** SideBar ***************************************")
       console.log(userInfo , productInfo)
       console.log(lastPageUserInfo)
+      console.log(lastPageProductInfo)
 
       
 
@@ -153,11 +172,11 @@ export default function SideBar(props) {
      
 
       <Routes>
-            <Route path ='/' exact element={<ContentWrapper userInfo={userInfo} productInfo= {productInfo} lastPageUserInfo = {lastPageUserInfo}/>} />
+            <Route path ='/' exact element={<ContentWrapper userInfo={userInfo} productInfo= {productInfo} lastPageUserInfo = {lastPageUserInfo} lastPageProductInfo = {lastPageProductInfo}/>} />
              
             <Route path ='/genres' exact  element={<GenresInDb categories = {Object.keys(productInfo.countByCategory)} />} />
             <Route path ='/lastMovie' exact  element={<LastMovieInDb lastPageUserInfo = {lastPageUserInfo}/>} />
-            <Route path ='/stats' exact  Component={ContentRowMovies} />
+            <Route path ='/stats' exact  element={<ContentRowMovies lastPageUserInfo = {lastPageUserInfo} lastPageProductInfo = {lastPageProductInfo}/>} />
             
             <Route path ='/tableUsers' exact element={<MoviesTable  data = {userInfo} header = {['id' , 'name' , 'email' , 'detail']} />}/> 
             
