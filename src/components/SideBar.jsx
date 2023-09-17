@@ -6,9 +6,6 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import { useState , useEffect} from 'react';
 
-
-
-
 export default function SideBar(props) {
 
       const [userInfo , setUserInfo] = useState({
@@ -42,6 +39,7 @@ export default function SideBar(props) {
             previous: "",            
             data: []
       });
+
       const [lastPageProductInfo, setLastPageProductInfo] = useState({
             success:true,
             endPoint: "",
@@ -71,8 +69,6 @@ export default function SideBar(props) {
             setCurrentProductPage((prevPage) => prevPage - 1);
         };
 
-      
-
       async function fetchData(endpoint , setState , page =1) {
             try {
                   const apiFetch = await fetch(`${endpoint}?page=${page}`)
@@ -92,8 +88,6 @@ export default function SideBar(props) {
             infoData();                  
       }, [currentUserPage , currentProductPage])
 
-     
-
       useEffect(() => {
             async function infoData() {
                 await fetchData(userInfo.endPoint, setLastPageUserInfo , userInfo.totalPages );
@@ -101,27 +95,18 @@ export default function SideBar(props) {
             infoData();
         }, [userInfo.endPoint , userInfo.totalPages]);
 
-        useEffect(() => {
+      useEffect(() => {
             async function infoData() {
-                await fetchData(productInfo.endPoint, setLastPageProductInfo , productInfo.totalPages );
+                  await fetchData(productInfo.endPoint, setLastPageProductInfo , productInfo.totalPages );
             }
-            infoData();
-        }, [productInfo.endPoint , productInfo.totalPages]);
-
-
-     
-   //  let lastUser = lastPageUserInfo.data[lastPageUserInfo.count-1]
-
-
+      infoData();
+      }, [productInfo.endPoint , productInfo.totalPages]);
 
       console.log("*********************** SideBar ***************************************")
-      console.log(userInfo , productInfo)
+      console.log(userInfo)
+      console.log(productInfo)
       console.log(lastPageUserInfo)
       console.log(lastPageProductInfo)
-
-      
-
-
 
 
   return (
@@ -141,7 +126,6 @@ export default function SideBar(props) {
                         </Link>
                   </li>
             <hr className="sidebar-divider" />
-
 
             <div className="sidebar-heading">Actions</div>
             { props.sideBar.map( (nav) => 
@@ -167,26 +151,25 @@ export default function SideBar(props) {
                   <button onClick={handleProductNextPage} disabled={currentProductPage === productInfo.totalPages}>Siguiente</button>
             </div>
       </ul>
-      
-
-     
-
+  
       <Routes>
             <Route path ='/' exact element={<ContentWrapper userInfo={userInfo} productInfo= {productInfo} lastPageUserInfo = {lastPageUserInfo} lastPageProductInfo = {lastPageProductInfo}/>} />
              
             <Route path ='/genres' exact  element={<GenresInDb categories = {Object.keys(productInfo.countByCategory)} />} />
+            
             <Route path ='/lastMovie' exact  element={<LastMovieInDb lastPageUserInfo = {lastPageUserInfo}/>} />
+            
             <Route path ='/stats' exact  element={<ContentRowMovies lastPageUserInfo = {lastPageUserInfo} lastPageProductInfo = {lastPageProductInfo}/>} />
             
-            <Route path ='/tableUsers' exact element={<MoviesTable  data = {userInfo} header = {['id' , 'name' , 'email' , 'detail']} />}/> 
+            <Route path ='/tableUsers' exact element={<MoviesTable  data = {userInfo} header = {['id' , 'name' , 'email' , 'detail']} />}/>             
             
-            
-            <Route path ='/tableProducts' exact element={<MoviesTable  data = {productInfo} header = {['id' , 'name' , 'descripcion' , 'detail' , 'urlImagenes']} />}/>
-                  
+            <Route path ='/tableProducts' exact element={<MoviesTable  data = {productInfo} header = {['id' , 'name' , 'descripcion' , 'detail' , 'urlImagenes']} />}/>                  
             
             <Route path ='/searchmovies' exact  Component={SearchMovies} />
+
             <Route Component={NotFound} />                          
       </Routes>
+
       
     </>
   );

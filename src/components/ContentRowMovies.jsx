@@ -2,13 +2,12 @@ import React from 'react';
 import { Cards } from './index'
 
 export default function ContentRowMovies({lastPageUserInfo , lastPageProductInfo}) {
-  console.log("**************** ContentRowMovies **********************************")
-      console.log(lastPageUserInfo , lastPageProductInfo)
-      console.log(lastPageProductInfo.countByCategory)
+//  console.log("**************** ContentRowMovies **********************************")
+//      console.log(lastPageUserInfo)
+//      console.log(lastPageProductInfo)
+//      console.log(lastPageProductInfo.countByCategory)
       let categories = Object.keys(lastPageProductInfo.countByCategory)
-      console.log(categories.length)
-
-    
+//      console.log(categories.length)
   
   return (
     <div className='row'>
