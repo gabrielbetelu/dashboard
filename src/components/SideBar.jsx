@@ -51,6 +51,13 @@ export default function SideBar(props) {
             data: []
       });
 
+/*      const [userDetail, setUserDetail] = useState({
+            id: 0,
+            name: "",
+            email: "",
+            imagenPerfil: ""
+      })
+*/
       const [currentUserPage, setCurrentUserPage] = useState(1);
       const handleUserNextPage = () => {
             setCurrentUserPage((prevPage) => prevPage + 1);
@@ -81,6 +88,19 @@ export default function SideBar(props) {
 
       }
 
+/*      async function fetchInfo(endpoint , setState) {
+            try {
+                  const apiFetchInfo = await fetch(endpoint)
+                  const data = await apiFetchInfo.json()
+                  setState(data)
+
+            } catch (error) {
+                  console.log(error)
+            }
+
+      }
+*/      
+
       useEffect (() => {
             async function infoData() {
                   await Promise.all([fetchData('/api/user',setUserInfo,currentUserPage) , fetchData('/api/product',setProductInfo,currentProductPage)])
@@ -89,24 +109,38 @@ export default function SideBar(props) {
       }, [currentUserPage , currentProductPage])
 
       useEffect(() => {
-            async function infoData() {
+            async function lastPageUsrData() {
                 await fetchData(userInfo.endPoint, setLastPageUserInfo , userInfo.totalPages );
             }
-            infoData();
+            lastPageUsrData();
         }, [userInfo.endPoint , userInfo.totalPages]);
 
       useEffect(() => {
-            async function infoData() {
+            async function lastPageProdData() {
                   await fetchData(productInfo.endPoint, setLastPageProductInfo , productInfo.totalPages );
             }
-      infoData();
+      lastPageProdData();
       }, [productInfo.endPoint , productInfo.totalPages]);
+
+/*      console.log("***** Ultimo Usr  *****************************")
+      console.log(lastPageUserInfo.data[lastPageUserInfo.count-1].detail)
+      console.log(lastPageUserInfo)
+*/      
+
+/*      useEffect(() => {
+            async function lastUsrData() {
+                  await fetchInfo(lastPageUserInfo.data[lastPageUserInfo.count-1].detail, setUserDetail);
+            }
+      lastUsrData();
+      }, [lastPageUserInfo.data , lastPageUserInfo.count]);
+*/
 
       console.log("*********************** SideBar ***************************************")
       console.log(userInfo)
       console.log(productInfo)
       console.log(lastPageUserInfo)
       console.log(lastPageProductInfo)
+//      console.log(userDetail)
 
 
   return (
@@ -152,6 +186,7 @@ export default function SideBar(props) {
             </div>
       </ul>
   
+   
       <Routes>
             <Route path ='/' exact element={<ContentWrapper userInfo={userInfo} productInfo= {productInfo} lastPageUserInfo = {lastPageUserInfo} lastPageProductInfo = {lastPageProductInfo}/>} />
              
