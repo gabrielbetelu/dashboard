@@ -1,7 +1,10 @@
 import React from 'react';
 import { Genre } from './index'
 
-export default function GenresInDb ({categories}) {
+export default function GenresInDb ({categories , countByCategory}) {
+  console.log("******** GenresInDb *****************************")
+  console.log(countByCategory)
+  
     return (
         <div className="col-lg-6 mb-4">						
             <div className="card shadow mb-4">
@@ -11,7 +14,7 @@ export default function GenresInDb ({categories}) {
                   <div className="card-body fondoCaja">
                     <div className="row ">
                       {categories.map( (categ, i) => (
-                          <Genre key = {categ + i} name = {categ} />
+                          <Genre key = {categ + i} name = {categ} cantidad = {countByCategory[categ]}/>
                       ))}
                     </div>
                   </div>

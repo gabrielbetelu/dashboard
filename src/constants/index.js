@@ -12,6 +12,11 @@ export const sideBar = [
     route: "/lastMovie"
   },
   {
+    id: "lastProduct",
+    title: "Last Product",
+    route: "/lastProduct"
+  },
+  {
     id: "dataMovies",
     title: "Stats",
     route: "/stats" 
@@ -26,9 +31,11 @@ export const sideBar = [
     title: "Table Products",
     route: "/tableProducts"
   },
+  /*
   {
     id: "searchMovies",
     title: "Search",
     route: "/searchmovies"
   },
+  */
 ]

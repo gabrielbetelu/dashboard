@@ -1,24 +1,24 @@
 import React from 'react';
 import { Cards } from './index'
 
-export default function ContentRowMovies({lastPageUserInfo , lastPageProductInfo}) {
-//  console.log("**************** ContentRowMovies **********************************")
+export default function ContentRowMovies({userInfo , productInfo}) {
+  console.log("**************** ContentRowMovies **********************************")
 //      console.log(lastPageUserInfo)
 //      console.log(lastPageProductInfo)
 //      console.log(lastPageProductInfo.countByCategory)
-      let categories = Object.keys(lastPageProductInfo.countByCategory)
-//      console.log(categories.length)
+      let categories = Object.keys(productInfo.countByCategory)
+      console.log(categories)
   
   return (
     <div className='row'>
             <Cards 
               title = "Users in Data Base"
-              quantity = {lastPageUserInfo.count+(lastPageUserInfo.totalPages - 1 )* 10}
+              quantity = {userInfo.count}
               color = "primary"
               icon = "fa-users" />
             <Cards 
               title = "Products in Data Base"
-              quantity = {lastPageProductInfo.count+(lastPageProductInfo.totalPages - 1 )* 10}
+              quantity = {productInfo.count}
               color = "success"
               icon = "fa-tshirt" />
             <Cards 
