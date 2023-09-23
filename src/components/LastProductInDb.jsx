@@ -3,7 +3,6 @@ import React from 'react';
 //import { useState , useEffect} from 'react';
 import LineData from "./lineData";
 
-
 export default function LastProductInDb({productInfo , lastProductInfo}) {
 /*      console.log(productInfo)
    
@@ -13,7 +12,6 @@ export default function LastProductInDb({productInfo , lastProductInfo}) {
       console.log("** lastProductInfo **")
       console.log(lastProductInfo)
 //      console.log(Object.keys(productInfo.data[productInfo.count-1])[0])
-      
 
       if (!lastProductInfo || !productInfo || !Object.keys(productInfo.data[productInfo.count-1])) {
             return <h4>Cargando</h4>
@@ -30,20 +28,11 @@ export default function LastProductInDb({productInfo , lastProductInfo}) {
                   <div className="card-body">
                         <div>
                               {Object.keys(lastProductInfo).map( (categ, i) => (
-
-
-
-                                    ((categ !== "imagenes")?((categ !== "urlImagenes")? <LineData key = {categ + i} name = {categ} dataDB = {lastProductInfo[categ]} /> : "") :"" )
-                                    
-
-
-
-
+                                    ((categ == "id" || categ == "name" || categ == "detail" || categ == "email" || categ == "descripcion")? <LineData key = {categ + i} name = {categ} dataDB = {lastProductInfo[categ]} /> : "") 
                               ))}
 
                   {/*            {imagen = lastProductInfo[urlImagenes]}
                               {console.log("Imagen en lastPageUserInfo" , imagen)}
-                  
                               <p>{Object.keys(lastProductInfo)[0]}:  {lastProductInfo[Object.keys(lastProductInfo)[0]]}</p> 
                               <p>{Object.keys(lastProductInfo)[1]}:  {lastProductInfo[Object.keys(lastProductInfo)[1]]}</p> 
                               <p>{Object.keys(lastProductInfo)[2]}:  {lastProductInfo[Object.keys(lastProductInfo)[2]]}</p> 
