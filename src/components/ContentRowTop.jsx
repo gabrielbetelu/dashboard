@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentRowMovies, LastMovieInDb, LastProductInDb , GenresInDb} from './index'
+import { ContentRowMovies, LastProductInDb , GenresInDb} from './index'
 
 export default function ContentRowTop({categories , userInfo , productInfo} ) {
       console.log("*****  ContentRowTop  ************************")
@@ -13,9 +13,11 @@ export default function ContentRowTop({categories , userInfo , productInfo} ) {
                  <ContentRowMovies userInfo = {userInfo} productInfo = {productInfo}/>
                
           <div className="row">
-                  {/*<LastMovieInDb userInfo = {userInfo}/>   */}
-                  {/*  <LastProductInDb lastProductInfo = {productInfo.data[productInfo.count-1]}/>  */} 
+                  <LastProductInDb productInfo= {userInfo} lastProductInfo = {userInfo.data[userInfo.count-1]} />
+
+                  <LastProductInDb productInfo= {productInfo} lastProductInfo = {productInfo.data[productInfo.count-1]}/>   
                   <GenresInDb categories = {categories} countByCategory = {productInfo.countByCategory}/> 
+                  
           </div>
           
     </div>

@@ -3,17 +3,18 @@ import React from 'react';
 import { useState , useEffect} from 'react';
 
 export default function LastMovieInDb({userInfo}) {
+      if (!userInfo) {
+            return <h3>Cargando</h3>
+            
+      }
 
-   
       const lastuserData = userInfo.data[userInfo.count-1];
-
       const [userDetail, setUserDetail] = useState({
             id: 0,
             name: "",
             email: "",
             imagenPerfil: ""
       })
-
       console.log("**************** userInfo **********************************")
       console.log(userInfo)
       console.log(lastuserData.id)
@@ -22,29 +23,23 @@ export default function LastMovieInDb({userInfo}) {
       console.log(lastuserData.detail)
       console.log("***** Ultimo Usr  *****************************")
       console.log(lastuserData.detail)
-
       async function fetchInfo(endpoint , setState) {
             try {
                   const apiFetchInfo = await fetch(endpoint)
                   const data = await apiFetchInfo.json()
                   setState(data)
-
             } catch (error) {
                   console.log(error)
             }
-
       }
-
       useEffect(() => {
             async function lastUsrData() {
                   await fetchInfo(userInfo.data[userInfo.count-1].detail, setUserDetail);
             }
       lastUsrData();
       }, [userInfo]);
-
       console.log(userDetail.imagenPerfil)
       let image = userDetail.imagenPerfil
-
   return(
       <> 
         <div className="col-lg-6 mb-4">

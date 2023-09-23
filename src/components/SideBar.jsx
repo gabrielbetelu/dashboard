@@ -104,9 +104,12 @@ export default function SideBar(props) {
             }; 
             infoData(); 
             let lastUserData = userInfo.data[userInfo.count-1]
+            let lastProductData = userInfo.data[userInfo.count-1]
             console.log("************** useEffect  **********************")
             console.log(userInfo)
             console.log(lastUserData)
+            console.log(lastProductData)
+
       //      console.log("ruta :  " , lastUserData.detail)
             console.log("************** FIN useEffect  **********************")
 /*            async function lastUsrData() {
@@ -181,11 +184,6 @@ export default function SideBar(props) {
       console.log("*********************** SideBar ***************************************")
       console.log(userInfo)
       console.log(productInfo)
-//      console.log(lastPageUserInfo)
-//      console.log(lastPageProductInfo)
-      
-
-
   return (
     <>  
       <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -240,13 +238,14 @@ export default function SideBar(props) {
             <Route path ='/' exact element={<ContentWrapper userInfo={userInfo} productInfo= {productInfo} lastProductInfo = {productInfo.data[productInfo.count-1]}/>} /> 
              
             <Route path ='/genres' exact  element={<GenresInDb categories = {Object.keys(productInfo.countByCategory)} countByCategory = {productInfo.countByCategory}/>} />
-            
      
-            <Route path ='/lastMovie' exact  element={<LastMovieInDb userInfo = {userInfo} />} />
+            {/*<Route path ='/lastMovie' exact  element={<LastMovieInDb userInfo = {userInfo} />} />  */}
+
+            <Route path ='/lastMovie' exact  element={<LastProductInDb productInfo= {userInfo} lastProductInfo = {userInfo.data[userInfo.count-1]}/>} />
             
       {/*       <Route path ='/lastProduct' exact  element={<LastProductInDb productInfo = {productInfo} />} /> */}
 
-            <Route path ='/lastProduct' exact  element={<LastProductInDb lastProductInfo = {productInfo.data[productInfo.count-1]} />} />
+            <Route path ='/lastProduct' exact  element={<LastProductInDb productInfo= {productInfo} lastProductInfo = {productInfo.data[productInfo.count-1]}/>} />
        
             <Route path ='/stats' exact  element={<ContentRowMovies userInfo = {userInfo} productInfo = {productInfo}/>} />
             

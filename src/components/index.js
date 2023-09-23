@@ -7,8 +7,10 @@ import ContentRowMovies from "./ContentRowMovies"
 import LastMovieInDb from "./LastMovieInDb"
 import LastProductInDb from "./LastProductInDb"
 import GenresInDb from "./GenresInDb"
-import Genre from "./Genre";
+import Genre from "./Genre"
 import Cards from "./Cards"
+
+
 
 import MoviesTable from "./MoviesTable/MoviesTable"
 import MoviesTableRows from "./MoviesTable/MoviesTableRows"
@@ -30,6 +32,7 @@ export {
   GenresInDb,
   Genre,
   Cards,
+  
   
   MoviesTable,
   MoviesTableRows,

@@ -3,6 +3,7 @@ import { Genre } from './index'
 
 export default function GenresInDb ({categories , countByCategory}) {
   console.log("******** GenresInDb *****************************")
+  console.log(categories)
   console.log(countByCategory)
   
     return (
