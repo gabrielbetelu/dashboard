@@ -1,7 +1,7 @@
 import React from 'react';
 //import { Link, Route, Routes } from 'react-router-dom';
 //import { useState , useEffect} from 'react';
-//import LineData from "./lineData";
+import LineData from "./lineData";
 
 
 export default function LastProductInDb({productInfo , lastProductInfo}) {
@@ -10,6 +10,7 @@ export default function LastProductInDb({productInfo , lastProductInfo}) {
       const lastproductData = productInfo.data[productInfo.count-1];  
 */   
       console.log("**************** productInfo **********************************")
+      console.log("** lastProductInfo **")
       console.log(lastProductInfo)
 //      console.log(Object.keys(productInfo.data[productInfo.count-1])[0])
       
@@ -28,20 +29,26 @@ export default function LastProductInDb({productInfo , lastProductInfo}) {
                   </div>
                   <div className="card-body">
                         <div>
-                  {/*            {Object.keys(productInfo.data[productInfo.count-1]).map( (categ, i) => (
+                              {Object.keys(lastProductInfo).map( (categ, i) => (
+
+
+
+                                    ((categ !== "imagenes")?((categ !== "urlImagenes")? <LineData key = {categ + i} name = {categ} dataDB = {lastProductInfo[categ]} /> : "") :"" )
                                     
-                                    ((categ != "urlImagenes")? <LineData key = {categ + i} name = {categ} dataDb = {lastProductInfo[categ]}/> : "")
-                                    
+
+
+
+
                               ))}
 
-                              {imagen = lastProductInfo[urlImagenes]}
+                  {/*            {imagen = lastProductInfo[urlImagenes]}
                               {console.log("Imagen en lastPageUserInfo" , imagen)}
+                  
+                              <p>{Object.keys(lastProductInfo)[0]}:  {lastProductInfo[Object.keys(lastProductInfo)[0]]}</p> 
+                              <p>{Object.keys(lastProductInfo)[1]}:  {lastProductInfo[Object.keys(lastProductInfo)[1]]}</p> 
+                              <p>{Object.keys(lastProductInfo)[2]}:  {lastProductInfo[Object.keys(lastProductInfo)[2]]}</p> 
+                              <p>{Object.keys(lastProductInfo)[3]}:  {lastProductInfo[Object.keys(lastProductInfo)[3]]}</p> 
                    */}
-                              <p>{Object.keys(productInfo.data[productInfo.count-1])[0]}:  {lastProductInfo[Object.keys(productInfo.data[productInfo.count-1])[0]]}</p> 
-                              <p>{Object.keys(productInfo.data[productInfo.count-1])[1]}:  {lastProductInfo[Object.keys(productInfo.data[productInfo.count-1])[1]]}</p> 
-                              <p>{Object.keys(productInfo.data[productInfo.count-1])[2]}:  {lastProductInfo[Object.keys(productInfo.data[productInfo.count-1])[2]]}</p> 
-                              <p>{Object.keys(productInfo.data[productInfo.count-1])[3]}:  {lastProductInfo[Object.keys(productInfo.data[productInfo.count-1])[3]]}</p> 
-
                         {/*      <p>id:  {lastProductInfo.id}</p>
                               <p>name:  {lastProductInfo.name}</p>
                               <p>descripción:  {lastProductInfo.descripcion || lastProductInfo.email}</p>
@@ -49,9 +56,10 @@ export default function LastProductInDb({productInfo , lastProductInfo}) {
                          */}
                         </div>
                          <div >
-                        {/*       <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: '18rem' }} src={`${lastProductInfo.urlImagenes}`} alt=" Avatar "/>
+                               <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: '16rem' }} src={lastProductInfo.urlImagenes} alt=" Avatar "/>
+                        
+                        {/*         <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: '16rem' }} src={lastProductInfo[Object.keys(lastProductInfo)[4]]} alt=" Avatar "/>
                         */}
-                                <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: '18rem' }} src={lastProductInfo[Object.keys(productInfo.data[productInfo.count-1])[4]]} alt=" Avatar "/>
                         {/*        <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: '18rem' }} src={lastProductInfo.urlImagenes} alt=" Avatar "/>
                          */}
                         </div>

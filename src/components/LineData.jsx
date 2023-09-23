@@ -6,6 +6,8 @@ export default function LineData({name , dataDB}) {
     console.log(name + ": ",  dataDB)
   return (
     <>  
+        {console.log("*******  dataDB  *************************")}
+        {console.log(dataDB)}
         <div > 
             <p>{name ? name + ":      " : " - "}       {dataDB ? " "+dataDB : " - "}</p>
         </div>
